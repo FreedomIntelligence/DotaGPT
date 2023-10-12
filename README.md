@@ -14,14 +14,15 @@ Given these motivations, we introduce the DotaGPT model, paired with a benchmark
 ## Data
 ### Data Collection and Processing
 We have collected data divided into three datasets: one primarily for CDS (clinical decision support) tasks, one mainly for encyclopedia question-answer tasks, and one for other medical text tasks.
-![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/a165863f-8157-4df1-a11c-3817f0d20277)
+![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/3adf7329-c527-497e-88d8-0c9bed96c41e)
 
 ### CDS task definition
 We have established 18 CDS (clinical decision support) tasks following a top-down approach based on the complete patient consultation process, from triage to diagnosis, treatment, and finally to discharge.
-![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/c7a3a0a2-e72a-48f4-b3f6-f75f07b624a8)
+<img src="[https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/f65148db-848f-4763-8651-76ac20ef2847](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/405f19c1-d453-48b7-8dfe-60cc1f02c4c8)" alt="image" width="75%">
 
 ## Example
-![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/2a4286b4-3e55-4739-8145-ec8d3693f1dd)
+![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/130239da-9220-42c1-b227-61f922677b17)
+
 Please note that the results showcased here are still in progress and not yet complete.
 
 
