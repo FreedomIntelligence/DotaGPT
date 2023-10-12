@@ -18,7 +18,7 @@ We have collected data divided into three datasets: one primarily for CDS (clini
 
 ### CDS task definition
 We have established 18 CDS (clinical decision support) tasks following a top-down approach based on the complete patient consultation process, from triage to diagnosis, treatment, and finally to discharge.
-<img src="[https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/f65148db-848f-4763-8651-76ac20ef2847](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/405f19c1-d453-48b7-8dfe-60cc1f02c4c8)" alt="image" width="75%">
+<img src="https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/405f19c1-d453-48b7-8dfe-60cc1f02c4c8" alt="image" width="75%">
 
 ## Example
 ![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/130239da-9220-42c1-b227-61f922677b17)
