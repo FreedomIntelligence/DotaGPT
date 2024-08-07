@@ -1,0 +1,10 @@
+# export PYTHONPATH="/mntcephfs/lab_data/xiewenya/DotaGPT:$PYTHONPATH"
+# cd /mntcephfs/lab_data/xiewenya/Eval
+python eval_code/reviewer.py \
+    --config configs/eval.yaml \
+    --model_name Baichuan-13B-Chat \
+    --eval_set DotaBench \
+    --turn_type multi \
+    --n_processes 2 \
+    --n_repeat 2 \
+    --turn_num 2 \
