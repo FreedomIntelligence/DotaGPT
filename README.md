@@ -10,8 +10,8 @@ pip install -r requirements.txt
 ### Step 1: Download and Prepare Data
 
 Download the datasets from Hugging Face:
-- `FreedomIntelligence/DoctorFLAN`
-- `FreedomIntelligence/DotaBench`
+- [FreedomIntelligence/DoctorFLAN](https://huggingface.co/datasets/FreedomIntelligence/DoctorFLAN)
+- [FreedomIntelligence/DotaBench](https://huggingface.co/datasets/FreedomIntelligence/DotaBench)
 
 ### Step 2: Generate and Position the Data
 
@@ -86,6 +86,16 @@ python eval_code/reviewer.py \
 
 Contributions are welcome! Feel free to submit issues or pull requests on GitHub to help improve this project.
 
+## Citation
+The code in this repository is mostly developed for or derived from the paper below. 
+```text
+@article{xie2024llms,
+  title={LLMs for Doctors: Leveraging Medical LLMs to Assist Doctors, Not Replace Them},
+  author={Xie, Wenya and Xiao, Qingying and Zheng, Yu and Wang, Xidong and Chen, Junying and Ji, Ke and Gao, Anningzhe and Wan, Xiang and Jiang, Feng and Wang, Benyou},
+  journal={arXiv preprint arXiv:2406.18034},
+  year={2024}
+}
+```
 ## License
 
 This project is licensed under the MIT License.
