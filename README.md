@@ -1,39 +1,95 @@
-# DotaGPT
+## Get Started
 
-## Introduction
-This repository contains code and data for the DotaGPT paper, a large model that can serve as a doctor's assistant and a real-world doctor workflow task benchmark.
-
-## Motivation
-- **Enhancing Diagnosis & Treatment:** Primary care and specialist doctors may sometimes lack a comprehensive understanding of certain diseases, potentially leading to misdiagnoses and inappropriate treatments. Large language models can offer more holistic suggestions and explanations, aiding doctors in making accurate diagnoses.
-
-- **Reducing Physicians' Workload:** LLM can alleviate the burden on doctors by minimizing repetitive tasks, allowing them to focus on more intricate patient care aspects.
-
-- **Need for Real-world Medical Benchmarks:** There's a noticeable gap in the availability of benchmarks that align closely with the actual workflow of doctors, making it challenging to measure the real-world performance of various medical models.
-
-Given these motivations, we introduce the DotaGPT model, paired with a benchmark designed specifically to gauge the capability of medical models in addressing genuine medical challenges.
-## Data
-### Data Collection and Processing
-We have collected data divided into three datasets: one primarily for CDS (clinical decision support) tasks, one mainly for encyclopedia question-answer tasks, and one for other medical text tasks.
-![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/3adf7329-c527-497e-88d8-0c9bed96c41e)
-
-### CDS task definition
-We have established 18 CDS (clinical decision support) tasks following a top-down approach based on the complete patient consultation process, from triage to diagnosis, treatment, and finally to discharge.
-<img src="https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/405f19c1-d453-48b7-8dfe-60cc1f02c4c8" alt="image" width="75%">
-
-## Example
-![image](https://github.com/FreedomIntelligence/DotaGPT/assets/55481158/130239da-9220-42c1-b227-61f922677b17)
-
-Please note that the results showcased here are still in progress and not yet complete.
-
-
-## Citation
-Please cite the following if you found DotaGPT useful in your research.
+```bash
+git clone https://github.com/FreedomIntelligence/DotaGPT.git
+pip install -r requirements.txt
 ```
 
+## Evaluation
+
+### Step 1: Download and Prepare Data
+
+Download the datasets from Hugging Face:
+- `FreedomIntelligence/DoctorFLAN`
+- `FreedomIntelligence/DotaBench`
+
+### Step 2: Generate and Position the Data
+
+**Data Format**
+
+For `DotaBench`, the data is structured as follows. Each entry is a JSON object representing a series of interaction turns with a reference answer:
+
+```json
+{
+  "id": 0,
+  "turn_1_question": "example question 1",
+  "turn_1_answer": "[model-generated answer for turn 1]",
+  "turn_2_question": "example question 2",
+  "turn_2_answer": "[model-generated answer for turn 2]",
+  "turn_3_question": "example question 3",
+  "turn_3_answer": "[model-generated answer for turn 3]",
+  "reference": "example reference"
+}
 ```
+Complete the fields: `turn_1_answer`, `turn_2_answer`, `turn_3_answer`.
+
+For `DoctorFLAN`, the data format is as follows, with each entry representing a single-turn interaction:
+
+```json
+{
+  "id": 0,
+  "input": "example input",
+  "output": "[model-generated output]",
+  "reference": "example reference answer"
+}
+```
+Complete the field: `output`.
+
+Store the generated model responses in the location: `data/{eval_set}/{model_name}.jsonl`. Ensure that all required fields are correctly filled.
+
+### Step 3: Configuration
+
+Prepare a YAML configuration file specifying model details, API keys, etc. Example (`configs/eval.yaml`):
+
+```yaml
+api_key: "your-openai-api-key"
+base_url: "https://api.openai.com"
+gpt_version: "gpt-4"
+```
+
+### Step 4: Run the Evaluation
+
+Execute the evaluator with the script `script/run.sh`, modifying parameters as necessary. Example command:
+
+```bash
+python eval_code/reviewer.py \
+    --config configs/eval.yaml \
+    --model_name Baichuan-13B-Chat \
+    --eval_set DotaBench \
+    --turn_type multi \
+    --n_processes 2 \
+    --n_repeat 2 \
+    --turn_num 2
+```
+
+**Parameter Explanation**
+
+- `--config`: Path to the configuration file.
+- `--model_name`: Name of the model being evaluated.
+- `--eval_set`: Evaluation dataset being used. Choose either `DoctorFLAN` or `DotaBench`.
+- `--turn_type`: Type of interaction (single or multi-turn).
+- `--n_processes`: Number of processes for parallel processing.
+- `--n_repeat`: Number of repetitions for each sample.
+- `--turn_num`: Number of turns for multi-turn evaluations.
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests on GitHub to help improve this project.
 
 ## License
 
+This project is licensed under the MIT License.
 
 ## Contact Us
-To contact us feel free to create an Issue in this repository, or email the respective authors that contributed to this code base: 3046809534@qq.com
+
+For inquiries, please create an issue in this repository or email the authors: wenyaxie023@gmail.com

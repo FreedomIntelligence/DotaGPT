@@ -98,12 +98,14 @@ class SampleProcessor:
     def _create_eval_object(self, sample: dict, turn_type: str, turn_num: int) -> str:
         fields = {'reference': sample.get('reference')}
         if turn_type == "single":
-            fields.update({'question': sample.get('input', ''), 'answer': sample.get('output', '')})
+            assert 'input' in sample and 'output' in sample, "Sample must have 'input' and 'output' keys for single turn evaluation."
+            fields.update({'input': sample.get('input', ''), 'output': sample.get('output', '')})
         else:
             for i in range(1, turn_num + 1):
+                assert f'turn_{i}_question' in sample and f'turn_{i}_answer' in sample, f"Sample must have 'turn_{i}_question' and 'turn_{i}_answer' keys for {turn_num} turn evaluation."
                 fields.update({
-                    f'question_{i}': sample.get(f'Q{i}', ''),
-                    f'answer_{i}': sample.get(f'A{i}', '')})
+                    f'turn_{i}_question': sample.get(f'turn_{i}_question', ''),
+                    f'turn_{i}_answer': sample.get(f'turn_{i}_answer', '')})
         return self.eval_prompt.format(**fields)
 
     def _filter_samples(self, samples: list) -> list:
